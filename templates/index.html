@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('/static/images/image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .card:active {
+            transform: scale(1.1);
+            transition: transform 0.1s ease-in-out;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.7);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 4px 0;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active + ul {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: #bbb;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-blue-50 font-sans">
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="container mx-auto">
+            <div class="navbar-brand">My Portfolio</div>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul id="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-8 text-center">
+        <h1 class="text-5xl font-bold mb-4 text-black">Student Portfolio System</h1>
+        <p class="text-lg text-white mb-8">This system allows teachers, headteachers, and students to manage and view student portfolios, achievements, and performance data.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card p-6 rounded-lg shadow-lg" onclick="showDetail('achievements')">
+                <h2 class="text-2xl font-bold mb-2 text-black">Achievements</h2>
+                <p class="text-black">Highlight student achievements in academics, sports, arts, and more.</p>
+            </div>
+            <div class="card p-6 rounded-lg shadow-lg" onclick="showDetail('financial')">
+                <h2 class="text-2xl font-bold mb-2 text-black">Financial Information</h2>
+                <p class="text-black">View and manage fees, scholarships, and financial reports.</p>
+            </div>
+            <div class="card p-6 rounded-lg shadow-lg" onclick="showDetail('projects')">
+                <h2 class="text-2xl font-bold mb-2 text-black">Projects</h2>
+                <p class="text-black">Showcase student projects and collaborative activities.</p>
+            </div>
+            <div class="card p-6 rounded-lg shadow-lg" onclick="showDetail('analytics')">
+                <h2 class="text-2xl font-bold mb-2 text-black">Performance Analytics</h2>
+                <p class="text-black">Analyze student performance with detailed reports and analytics.</p>
+            </div>
+            <div class="card p-6 rounded-lg shadow-lg" onclick="showDetail('events')">
+                <h2 class="text-2xl font-bold mb-2 text-black">Event Calendar</h2>
+                <p class="text-black">Keep track of school events, deadlines, and activities.</p>
+            </div>
+            <div class="card p-6 rounded-lg shadow-lg" onclick="showDetail('communication')">
+                <h2 class="text-2xl font-bold mb-2 text-black">Parent-Teacher Communication</h2>
+                <p class="text-black">Facilitate easy communication between parents and teachers.</p>
+            </div>
+            <div class="card p-6 rounded-lg shadow-lg" onclick="location.href='/profile'">
+                <h2 class="text-2xl font-bold mb-2 text-black">Profile</h2>
+                <p class="text-black">View and edit your profile details.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Student Portfolio System | All rights reserved.</p>
+        <div>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script>
+        function showDetail(section) {
+            alert('You clicked on ' + section + ' section!');
+        }
+
+        // Toggle hamburger menu
+        document.getElementById('hamburger').addEventListener('click', function () {
+            this.classList.toggle('active');
+            document.getElementById('nav-links').classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>
